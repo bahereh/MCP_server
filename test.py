@@ -20,7 +20,7 @@ async def main():
             result = await session.call_tool(
                 "get_service_records",
                 arguments={
-                    "app_service_name": "charge",
+                    "app_service_name": "service_name1",
                     "start_time": "20250101",
                     "end_time": "20250102",
                     "status": "SUCCESS",
