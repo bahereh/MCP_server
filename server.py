@@ -31,16 +31,11 @@ password = os.getenv("ORACLE_PASSWORD")
 
 
 dsn = f"oracle+oracledb://{user}:{password}@{host}:{port}/?service_name={service}"
-
-print("------------ ****I got all the values I needed-----------")
-
 engine = create_engine(dsn)
-
-print("------------ **** WE SUCCESSFULLY CONNECT-----------")
 # -------------------------------------------------------
 # Project paths
 # -------------------------------------------------------
-PROJECT_ROOT = Path(r"E:\Bahereh_TU\My Research path\Vibe_Coding\research_mcp_server")
+PROJECT_ROOT = Path(r"E:\root_path")
 
 DATA_DIR = PROJECT_ROOT / "data"
 NOTEBOOKS_DIR = PROJECT_ROOT / "notebooks"
@@ -80,21 +75,13 @@ def get_service_records(
             return {"error": "Unknown service"}
         sql = """
                 select
-                    user_id,
-                    amount,
-                    order_id,
-                    platform,
-                    pg_id,
-                    user_group,
-                    service_id,
-                    add_data1,
-                    description,
+                    user_id
                     capturedate
-                from micro_app.vw_integ_detail
+                from sch1.vw_trasnaction1
                 where
                     service_id = :service_id
                     and capturedate between :start_dt and :end_dt
-                    and final_status = :status
+                    and status = :status
                 order by capturedate asc
                 """
         params = {
